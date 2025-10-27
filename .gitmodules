@@ -1,0 +1,4 @@
+[submodule "peinfo"]
+	path = peinfo
+	url = https://github.com/dandurisrihari/peinfo.git
+	branch = master

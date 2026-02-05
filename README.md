@@ -21,8 +21,11 @@ This directory contains debugging tools and utilities for EDK2 development.
    # Make sure EDK2 environment is set up first
    source ../edk2/edksetup.sh
    
-   # Build OVMF package
-   build -p OvmfPkg/OvmfPkgX64.dsc -b DEBUG -a X64 -t GCC5
+   # Build OVMF with network boot support (HTTP Boot, PXE, TLS)
+   build -p OvmfPkg/OvmfPkgX64.dsc -b DEBUG -a X64 -t GCC5 \
+     -D NETWORK_HTTP_BOOT_ENABLE=TRUE \
+     -D NETWORK_IP6_ENABLE=TRUE \
+     -D NETWORK_TLS_ENABLE=TRUE
    ```
 
 ## Running and Debugging

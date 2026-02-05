@@ -29,8 +29,11 @@ This directory contains debugging tools and utilities for EDK2 development.
 
 4. **Run OVMF in QEMU:**
    ```bash
-   # Launch OVMF in QEMU and boot to UEFI shell to generate debug.log
+   # Launch OVMF in QEMU (VNC on localhost:5900)
    make run
+   
+   # Connect via VNC viewer
+   vncviewer localhost:5900
    ```
 
 5. **Generate debug symbols:**
@@ -41,12 +44,13 @@ This directory contains debugging tools and utilities for EDK2 development.
 
 6. **Debug OVMF with GDB:**
    ```bash
-   # Launch OVMF in debug mode (in one terminal)
+   # Terminal 1: Launch OVMF in debug mode (VNC: localhost:5900, GDB: localhost:1234)
    make debug
-   ```
    
-   ```bash
-   # In another terminal, launch GDB
+   # Terminal 2: Connect VNC viewer
+   vncviewer localhost:5900
+   
+   # Terminal 3: Launch GDB and connect
    gdb
    target remote :1234
    source gdbscript

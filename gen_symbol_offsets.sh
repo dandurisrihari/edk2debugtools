@@ -1,8 +1,8 @@
 #!/bin/bash
 
 LOG="debug.log"
-BUILD="../edk2/Build"
-SEARCHPATHS="../edk2/Build/OvmfX64/DEBUG_GCC5/X64/"
+BUILD="../Build"
+SEARCHPATHS="../Build/OvmfX64/DEBUG_GCC5/X64/"
 PEINFO="peinfo/peinfo"
 
 cat "${LOG}" | grep Loading | grep -i efi | while read -r LINE; do
@@ -21,7 +21,6 @@ cat "${LOG}" | grep Loading | grep -i efi | while read -r LINE; do
   fi
   
   if [[ -z "${EFIFILE}" ]]; then
-    echo "Warning: EFI file not found for ${NAME}"
     continue
   fi
 
@@ -29,7 +28,6 @@ cat "${LOG}" | grep Loading | grep -i efi | while read -r LINE; do
         | grep -A 5 text | grep VirtualAddress | awk '{print $2}')
 
   if [[ -z "${ADDR}" ]]; then
-    echo "Warning: No .text VirtualAddress found for ${NAME}"
     continue
   fi
 
@@ -47,7 +45,6 @@ cat "${LOG}" | grep Loading | grep -i efi | while read -r LINE; do
   fi
 
   if [[ -z "${SYMFILE}" ]]; then
-    echo "Warning: No .debug file found for ${NAME} (tried ${ACTUAL_EFINAME} and ${NAME})"
     continue
   fi
 
